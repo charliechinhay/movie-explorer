@@ -1,15 +1,45 @@
-import { useState } from "react";
-import { searchMovies } from "../../services/movieService";
-import "./Home.css";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
-import CardMovie from "../../components/CardMovie";
-import { Spinner } from "react-bootstrap";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { useState, useMemo, useEffect } from "react";
+import { debounce } from "lodash";
+import CardMovie from "../../components/CardMovie.jsx";
+import { searchMovies } from "../../services/movieService.js";
+import { getTrendingMovies } from "../../services/movieService.js";
+import "./Home.css";
 
 function Home() {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const debouncedSearch = useMemo(
+    () =>
+      debounce(async (value) => {
+        if (!value.trim()) return;
+        setLoading(true);
+        try {
+          const results = await searchMovies(value);
+          setMovies(results);
+        } catch (err) {
+          console.log(err);
+          setError("Failed to fetch movies. Please try again.");
+        } finally {
+          setLoading(false);
+        }
+      }, 500),
+    [],
+  );
+
+  useEffect(() => {
+    const loadTrending = async () => {
+      const movies = await getTrendingMovies();
+      setMovies(movies);
+    };
+
+    loadTrending();
+  }, []);
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -38,7 +68,10 @@ function Home() {
             type="text"
             placeholder="Name film..."
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              debouncedSearch(e.target.value);
+            }}
             className="search-input"
           />
 
@@ -50,9 +83,7 @@ function Home() {
         <Row>
           <Col className="movies-grid">
             {loading ? (
-              <Spinner animation="border" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </Spinner>
+              <Skeleton count={10} height={300} />
             ) : error ? (
               <p>{error}</p>
             ) : (

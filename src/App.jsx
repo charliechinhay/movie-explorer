@@ -2,15 +2,22 @@ import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout.jsx";
 import Home from "./pages/Home/Home.jsx";
 import MovieDetails from "./pages/MovieDetails/MovieDetails.jsx";
+import Favorites from "./pages/Favorites/Favorites.jsx";
+import { FavoritesProvider } from "./Contexts/FavoritesContext.jsx";
+import { ThemeProvider } from "./Contexts/ThemeContext.jsx";
 function App() {
   return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/movie/:id" element={<MovieDetails />} />
-        <Route path="/favorites" element={<h1>Favorites</h1>} />
-      </Route>
-    </Routes>
+    <ThemeProvider>
+      <FavoritesProvider>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/movie/:id" element={<MovieDetails />} />
+            <Route path="/favorites" element={<Favorites />} />
+          </Route>
+        </Routes>
+      </FavoritesProvider>
+    </ThemeProvider>
   );
 }
 
