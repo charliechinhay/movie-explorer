@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout.jsx";
+import Landing from "./pages/Landing/Landing.jsx";
 import Home from "./pages/Home/Home.jsx";
 import MovieDetails from "./pages/MovieDetails/MovieDetails.jsx";
 import Favorites from "./pages/Favorites/Favorites.jsx";
@@ -10,8 +11,9 @@ function App() {
     <ThemeProvider>
       <FavoritesProvider>
         <Routes>
+          <Route path="/" element={<Landing />} />
           <Route element={<Layout />}>
-            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/movie/:id" element={<MovieDetails />} />
             <Route path="/favorites" element={<Favorites />} />
           </Route>

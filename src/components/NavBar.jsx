@@ -18,7 +18,7 @@ function NavBar() {
       </Link>
 
       <Nav className="ms-auto">
-        <Link className="nav-link d-inline text-white" to="/">
+        <Link className="nav-link d-inline text-white" to="/home">
           Home
         </Link>
 

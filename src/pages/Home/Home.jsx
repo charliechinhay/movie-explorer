@@ -13,11 +13,18 @@ function Home() {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isSearching, setIsSearching] = useState(false);
 
   const debouncedSearch = useMemo(
     () =>
       debounce(async (value) => {
-        if (!value.trim()) return;
+        if (!value.trim()) {
+          setIsSearching(false);
+          const movies = await getTrendingMovies();
+          setMovies(movies);
+          return;
+        }
+        setIsSearching(true);
         setLoading(true);
         try {
           const results = await searchMovies(value);
@@ -43,8 +50,15 @@ function Home() {
 
   const handleSearch = async (e) => {
     e.preventDefault();
+    if (!query.trim()) {
+      setIsSearching(false);
+      const movies = await getTrendingMovies();
+      setMovies(movies);
+      return;
+    }
 
     try {
+      setIsSearching(true);
       setError(null);
       setLoading(true);
       const results = await searchMovies(query);
@@ -79,7 +93,16 @@ function Home() {
             Search
           </Button>
         </Form>
-
+        {!isSearching && (
+          <div className="trending-section">
+            <h2 className="trending-title">
+              Trending <span className="trending-title-accent">Movies</span>
+            </h2>
+            <p className="trending-description">
+              Check out the most popular movies right now!
+            </p>
+          </div>
+        )}
         <Row>
           <Col className="movies-grid">
             {loading ? (

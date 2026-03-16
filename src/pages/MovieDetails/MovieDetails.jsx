@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getMovieDetails } from "../../services/movieService";
 import { Container, Row, Col, Spinner } from "react-bootstrap";
+import RenderStar from "../../components/renderStar/RenderStar";
 
 function MovieDetails() {
   const { id } = useParams();
@@ -56,7 +57,7 @@ function MovieDetails() {
           <h1>{movie.title}</h1>
           <p>{movie.overview}</p>
           <p>Release Date: {movie.release_date}</p>
-          <p>Rating: {movie.vote_average}</p>
+          <RenderStar rating={movie.vote_average} />
         </Col>
       </Row>
     </Container>
