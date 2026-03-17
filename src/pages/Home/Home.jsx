@@ -1,4 +1,4 @@
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import { Form, Button, Container } from "react-bootstrap";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useState, useMemo, useEffect } from "react";
@@ -103,21 +103,19 @@ function Home() {
             </p>
           </div>
         )}
-        <Row>
-          <Col className="movies-grid">
-            {loading ? (
-              <Skeleton count={10} height={300} />
-            ) : error ? (
-              <p>{error}</p>
-            ) : (
-              movies.map((movie) => (
-                <Col key={movie.id} lg={3} md={4} sm={6} className="mb-4">
-                  <CardMovie movie={movie} />
-                </Col>
-              ))
-            )}
-          </Col>
-        </Row>
+        <div className="movies-grid">
+          {loading ? (
+            <Skeleton count={10} height={300} />
+          ) : error ? (
+            <p>{error}</p>
+          ) : (
+            movies.map((movie) => (
+              <div key={movie.id} className="movie-grid-item">
+                <CardMovie movie={movie} />
+              </div>
+            ))
+          )}
+        </div>
       </Container>
     </>
   );

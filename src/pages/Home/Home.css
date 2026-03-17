@@ -35,10 +35,28 @@
 }
 
 .movies-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
   gap: 20px;
   margin-top: 20px;
+}
+
+@media (min-width: 576px) {
+  .movies-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .movies-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 992px) {
+  .movies-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .movie-card {
