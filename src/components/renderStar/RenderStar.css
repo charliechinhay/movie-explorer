@@ -1,5 +1,6 @@
 .star-rating {
-  display: flex;\n  align-items: center;
+  display: flex;
+  align-items: center;
   gap: 4px;
   padding: 10px 0;
 }
