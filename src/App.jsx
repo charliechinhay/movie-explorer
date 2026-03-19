@@ -6,6 +6,8 @@ import MovieDetails from "./pages/MovieDetails/MovieDetails.jsx";
 import Favorites from "./pages/Favorites/Favorites.jsx";
 import { FavoritesProvider } from "./Contexts/FavoritesContext.jsx";
 import { ThemeProvider } from "./Contexts/ThemeContext.jsx";
+import Footer from "./components/Footer.jsx";
+
 function App() {
   return (
     <ThemeProvider>
@@ -18,6 +20,7 @@ function App() {
             <Route path="/favorites" element={<Favorites />} />
           </Route>
         </Routes>
+        <Footer />
       </FavoritesProvider>
     </ThemeProvider>
   );

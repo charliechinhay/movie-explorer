@@ -1,35 +1,41 @@
 import { Nav, Navbar } from "react-bootstrap";
-import { Button } from "react-bootstrap";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ThemeContext from "../Contexts/ThemeContext.jsx";
+import "./NavBar.css";
 
 function NavBar() {
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const location = useLocation();
+
   return (
-    <Navbar
-      expand="lg"
-      bg={theme === "light" ? "light" : "dark"}
-      data-bs-theme={theme}
-      className="navbar navbar-expand-lg navbar-dark bg-dark px-4"
-    >
+    <Navbar expand="lg" className="custom-navbar">
       <Link className="navbar-brand" to="/">
-        Movie Explorer
+        🎬 MovieX
       </Link>
 
-      <Nav className="ms-auto">
-        <Link className="nav-link d-inline text-white" to="/home">
-          Home
-        </Link>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="ms-auto align-items-center">
+          <Link
+            className={`nav-link ${location.pathname === "/home" ? "active" : ""}`}
+            to="/home"
+          >
+            Home
+          </Link>
 
-        <Link className="nav-link d-inline text-white" to="/favorites">
-          Favorites
-        </Link>
+          <Link
+            className={`nav-link ${location.pathname === "/favorites" ? "active" : ""}`}
+            to="/favorites"
+          >
+            ❤️ Favorites
+          </Link>
 
-        <Button onClick={toggleTheme} className="ms-2">
-          {theme === "light" ? "🌙" : "☀️"}
-        </Button>
-      </Nav>
+          <button onClick={toggleTheme} className="theme-toggle">
+            {theme === "light" ? "🌙" : "☀️"}
+          </button>
+        </Nav>
+      </Navbar.Collapse>
     </Navbar>
   );
 }

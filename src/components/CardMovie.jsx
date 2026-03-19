@@ -1,9 +1,9 @@
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { toggleFavorite } from "../services/favoritesServices.js";
+import "./CardMovie.css";
 
-function CardMovie({ movie }) {
+function CardMovie({ movie, toggleFavorite }) {
   const imageUrl = movie.poster_path
     ? "https://image.tmdb.org/t/p/w500" + movie.poster_path
     : "https://via.placeholder.com/500x750?text=No+Image";
@@ -13,32 +13,26 @@ function CardMovie({ movie }) {
   };
 
   return (
-    <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.2 }}>
-      <Card className="h-100 shadow-sm">
-        <Card.Img variant="top" src={imageUrl} />
-
+    <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
+      <Card className="movie-card h-100">
+        <div className="card-img-wrapper">
+          <Link to={`/movie/${movie.id}`}>
+            <Card.Img variant="top" src={imageUrl} alt={movie.title} />
+          </Link>
+        </div>
         <Card.Body className="d-flex flex-column">
           <Card.Title>{movie.title}</Card.Title>
-
           <Card.Text>{movie.release_date?.slice(0, 4)}</Card.Text>
 
           <Button
             onClick={handleFavorite}
-            variant="outline-warning"
-            className="mb-2"
+            className={`btn-favorite ${movie.isFavorite ? "is-favorite" : ""}`}
           >
-            {movie.isFavorite
-              ? "Rimuovi dai preferiti"
-              : "Aggiungi ai preferiti"}
+            {movie.isFavorite ? "Remove from Favorites" : "Add to Favorites"}
           </Button>
 
-          <Button
-            as={Link}
-            to={`/movie/${movie.id}`}
-            variant="primary"
-            className="mt-auto"
-          >
-            Dettagli
+          <Button as={Link} to={`/movie/${movie.id}`} className="btn-details">
+            Details
           </Button>
         </Card.Body>
       </Card>

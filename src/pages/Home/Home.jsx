@@ -1,11 +1,12 @@
 import { Form, Button, Container } from "react-bootstrap";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useContext } from "react";
 import { debounce } from "lodash";
 import CardMovie from "../../components/CardMovie.jsx";
 import { searchMovies } from "../../services/movieService.js";
 import { getTrendingMovies } from "../../services/movieService.js";
+import { FavoritesContext } from "../../Contexts/FavoritesContext";
 import "./Home.css";
 
 function Home() {
@@ -14,6 +15,7 @@ function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isSearching, setIsSearching] = useState(false);
+  const { favorites, toggleFavorite } = useContext(FavoritesContext);
 
   const debouncedSearch = useMemo(
     () =>
@@ -109,11 +111,17 @@ function Home() {
           ) : error ? (
             <p>{error}</p>
           ) : (
-            movies.map((movie) => (
-              <div key={movie.id} className="movie-grid-item">
-                <CardMovie movie={movie} />
-              </div>
-            ))
+            movies.map((movie) => {
+              const isFavorite = favorites.some((fav) => fav.id === movie.id);
+              return (
+                <div key={movie.id} className="movie-grid-item">
+                  <CardMovie
+                    movie={{ ...movie, isFavorite }}
+                    toggleFavorite={toggleFavorite}
+                  />
+                </div>
+              );
+            })
           )}
         </div>
       </Container>

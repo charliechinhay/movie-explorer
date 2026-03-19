@@ -10,7 +10,7 @@ function MovieDetails() {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { favorites, addFavorite } = useContext(FavoritesContext);
+  const { favorites, toggleFavorite } = useContext(FavoritesContext);
 
   const isFavorite = favorites.some((fav) => fav.id === parseInt(id));
 
@@ -73,10 +73,9 @@ function MovieDetails() {
           <button className="movie-details-buttons">Watch Trailer</button>
           <button
             className="movie-details-buttons"
-            onClick={() => addFavorite(movie)}
-            disabled={isFavorite}
+            onClick={() => toggleFavorite(movie)}
           >
-            {isFavorite ? "Added to Favorites" : "Add to Favorites"}
+            {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
           </button>
           <button className="movie-details-buttons">Share</button>
         </Col>

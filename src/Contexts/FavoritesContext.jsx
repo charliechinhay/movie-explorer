@@ -10,14 +10,22 @@ export function FavoritesProvider({ children }) {
     setFavorites(saved);
   }, []);
 
-  const addFavorite = (movie) => {
-    const updated = [...favorites, movie];
+  const toggleFavorite = (movie) => {
+    const exists = favorites.find((m) => m.id === movie.id);
+    let updated;
+
+    if (exists) {
+      updated = favorites.filter((m) => m.id !== movie.id);
+    } else {
+      updated = [...favorites, movie];
+    }
+
     setFavorites(updated);
     localStorage.setItem("favorites", JSON.stringify(updated));
   };
 
   return (
-    <FavoritesContext.Provider value={{ favorites, addFavorite }}>
+    <FavoritesContext.Provider value={{ favorites, toggleFavorite }}>
       {children}
     </FavoritesContext.Provider>
   );

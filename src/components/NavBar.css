@@ -1,0 +1,68 @@
+.custom-navbar {
+  background: var(--dark-card) !important;
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 15px 30px !important;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.custom-navbar .navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: transform 0.3s ease;
+}
+
+.custom-navbar .navbar-brand:hover {
+  transform: scale(1.05);
+}
+
+.custom-navbar .nav-link {
+  font-weight: 500;
+  padding: 8px 20px !important;
+  margin: 0 5px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  color: var(--text-primary) !important;
+}
+
+.custom-navbar .nav-link:hover {
+  background: rgba(229, 9, 20, 0.1);
+  color: var(--primary) !important;
+}
+
+.custom-navbar .nav-link.active {
+  background: var(--gradient-primary);
+  color: white !important;
+}
+
+.custom-navbar .theme-toggle {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid var(--glass-border);
+  background: transparent;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: 15px;
+}
+
+.custom-navbar .theme-toggle:hover {
+  border-color: var(--accent);
+  background: rgba(245, 197, 24, 0.1);
+  transform: rotate(20deg);
+}
+
+body[data-theme="light"] .custom-navbar {
+  background: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
