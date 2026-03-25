@@ -1,16 +1,30 @@
-# React + Vite
+1.- 🎬 Movie Explorer – React Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Movie Explorer è una web app sviluppata in **React** che permette di cercare film, visualizzarne i dettagli e gestire una lista di preferiti in modo semplice e intuitivo.
 
-Currently, two official plugins are available:
+🌐 Live demo: https://movie-explorer-five-omega.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+2.- ⚡ Funzionalità principali
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🔍 **Ricerca film** tramite l’API OMDb  
+- 🎞 **Dettagli film**: poster, trama, rating  
+- ❤️ **Gestione preferiti** con persistenza tramite `localStorage`  
+- 🌗 **Tema chiaro/scuro** gestito tramite **Context API**  
+- ⏳ **Gestione loading e errori**  
+- 🧩 **Componenti modulari**: Navbar, Footer, MovieCard, RenderStar  
+- 🔀 **Routing dinamico** con React Router
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+3.- 🛠️ Tecnologie utilizzate
+
+- React + React Router  
+- React Bootstrap  
+- Context API per gestione tema  
+- LocalStorage per persistenza dei preferiti  
+- Vercel per deploy live su dominio personalizzato  
+
+---
+
