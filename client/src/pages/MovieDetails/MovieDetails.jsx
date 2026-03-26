@@ -10,6 +10,7 @@ function MovieDetails() {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const { favorites, toggleFavorite } = useContext(FavoritesContext);
 
   const isFavorite = favorites.some((fav) => fav.id === parseInt(id));
@@ -21,8 +22,8 @@ function MovieDetails() {
         const data = await getMovieDetails(id);
         setMovie(data);
         setLoading(false);
-      } catch (error) {
-        console.error("Error fetching movie details:", error);
+      } catch (_error) {
+        setError(true);
         setLoading(false);
       }
     };
@@ -40,7 +41,7 @@ function MovieDetails() {
     );
   }
 
-  if (!movie) {
+  if (error || !movie) {
     return <p>Movie not found.</p>;
   }
 
@@ -61,7 +62,7 @@ function MovieDetails() {
         <Col md={8}>
           <h1 className="movie-title">{movie.title}</h1>
           <p className="movie-genres">
-            {movie.genres.map((genre) => genre.name).join(", ")}
+            {movie.genres?.map((genre) => genre.name).join(", ")}
           </p>
           <p className="movie-overview">{movie.overview}</p>
           <p className="movie-release-date">
