@@ -1,9 +1,18 @@
-/* global module */
-const React = require("react");
+//Global mock for framer-motion to be used in tests
 
 const createMotionComponent = (tag) =>
   React.forwardRef(function MotionComponent(
-    { children, whileHover, whileTap, animate, initial, exit, transition, variants, ...props },
+    {
+      children,
+      whileHover,
+      whileTap,
+      animate,
+      initial,
+      exit,
+      transition,
+      variants,
+      ...props
+    },
     ref,
   ) {
     return React.createElement(tag, { ...props, ref }, children);
