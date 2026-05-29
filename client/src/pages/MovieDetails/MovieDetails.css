@@ -4,112 +4,224 @@
   margin: 0 auto;
 }
 
-.movie-details-container .row {
+.movie-details-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+.movie-details-not-found {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: 60px 20px;
+}
+
+/* Backdrop hero */
+.movie-backdrop-hero {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  background-size: cover;
+  background-position: center 20%;
+  border-radius: 24px 24px 0 0;
+  overflow: hidden;
+  margin-bottom: -1px;
+}
+
+.movie-backdrop-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 15, 0.25) 0%,
+    rgba(10, 10, 15, 0.92) 100%
+  );
+}
+
+.movie-backdrop-title {
+  position: absolute;
+  bottom: 24px;
+  left: 30px;
+  right: 30px;
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+  margin: 0;
+  z-index: 1;
+}
+
+/* Card section */
+.movie-details-card {
   background: var(--dark-card);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border: 1px solid var(--glass-border);
-  border-radius: 24px;
+  border-radius: 0 0 24px 24px;
   padding: 30px;
   margin: 0;
 }
 
-.movie-details-container img {
+.movie-details-container:not(:has(.movie-backdrop-hero)) .movie-details-card {
+  border-radius: 24px;
+}
+
+.movie-poster {
   border-radius: 16px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease;
+  width: 100%;
 }
 
-.movie-details-container img:hover {
+.movie-poster:hover {
   transform: scale(1.02);
 }
 
+.movie-info-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 .movie-title {
-  font-size: 3rem;
+  font-size: 2.6rem;
   font-weight: 800;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
   background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.8) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
+/* Genre badges */
 .movie-genres {
-  font-size: 1rem;
-  margin-bottom: 25px;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  margin-bottom: 20px;
 }
 
-.movie-genres::before {
-  content: none;
+.movie-genre-badge {
+  display: inline-block;
+  padding: 5px 14px;
+  background: rgba(86, 77, 227, 0.18);
+  border: 1px solid rgba(86, 77, 227, 0.4);
+  border-radius: 20px;
+  font-size: 0.82rem;
+  color: #a5b4fc;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  transition: all 0.2s ease;
+}
+
+.movie-genre-badge:hover {
+  background: rgba(86, 77, 227, 0.35);
+  border-color: rgba(86, 77, 227, 0.7);
 }
 
 .movie-overview {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   line-height: 1.8;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   color: var(--text-secondary);
 }
 
 .movie-release-date {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--accent);
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
+  gap: 6px;
+  padding: 7px 16px;
   background: rgba(245, 197, 24, 0.1);
   border-radius: 20px;
   border: 1px solid rgba(245, 197, 24, 0.3);
+  align-self: flex-start;
 }
 
-.movie-details-buttons {
-  margin: 10px 10px 10px 0;
-  padding: 12px 24px;
-  font-size: 14px;
+/* Action buttons */
+.movie-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.movie-btn {
+  padding: 11px 22px;
+  font-size: 0.88rem;
   font-weight: 600;
-  color: white;
   border: none;
   border-radius: 25px;
   cursor: pointer;
   transition: all 0.3s ease;
+  letter-spacing: 0.3px;
+}
+
+.movie-btn-play {
   background: var(--gradient-primary);
+  color: white;
   box-shadow: 0 4px 15px rgba(229, 9, 20, 0.3);
 }
 
-.movie-details-buttons:hover {
+.movie-btn-play:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(229, 9, 20, 0.5);
 }
 
-.movie-details-buttons:nth-child(2) {
+.movie-btn-trailer {
   background: linear-gradient(135deg, #564de3 0%, #7c3aed 100%);
+  color: white;
   box-shadow: 0 4px 15px rgba(86, 77, 227, 0.3);
 }
 
-.movie-details-buttons:nth-child(2):hover {
+.movie-btn-trailer:hover {
+  transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(86, 77, 227, 0.5);
 }
 
-.movie-details-buttons:nth-child(3) {
+.movie-btn-favorite {
   background: linear-gradient(135deg, #f5c518 0%, #ff9500 100%);
   color: #1a1a2e;
   box-shadow: 0 4px 15px rgba(245, 197, 24, 0.3);
 }
 
-.movie-details-buttons:nth-child(3):hover {
+.movie-btn-favorite:hover {
+  transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(245, 197, 24, 0.5);
 }
 
-.movie-details-buttons:nth-child(4) {
+.movie-btn-favorite.is-favorite {
+  background: var(--gradient-primary);
+  color: white;
+  box-shadow: 0 4px 15px rgba(229, 9, 20, 0.3);
+}
+
+.movie-btn-share {
   background: transparent;
   border: 2px solid var(--glass-border);
+  color: var(--text-primary);
   box-shadow: none;
 }
 
-.movie-details-buttons:nth-child(4):hover {
+.movie-btn-share:hover {
   border-color: var(--primary);
   background: rgba(229, 9, 20, 0.1);
+  color: var(--primary);
+}
+
+@media (max-width: 768px) {
+  .movie-backdrop-title {
+    font-size: 1.8rem;
+  }
+
+  .movie-backdrop-hero {
+    height: 220px;
+  }
+
+  .movie-details-card {
+    padding: 20px 15px;
+  }
 }

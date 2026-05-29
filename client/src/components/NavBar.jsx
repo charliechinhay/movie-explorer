@@ -2,10 +2,12 @@ import { Nav, Navbar } from "react-bootstrap";
 import { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import ThemeContext from "../Contexts/ThemeContext.jsx";
+import { FavoritesContext } from "../Contexts/FavoritesContext.jsx";
 import "./NavBar.css";
 
 function NavBar() {
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const { favorites } = useContext(FavoritesContext);
   const location = useLocation();
 
   return (
@@ -29,6 +31,9 @@ function NavBar() {
             to="/favorites"
           >
             ❤️ Favorites
+            {favorites.length > 0 && (
+              <span className="nav-badge">{favorites.length}</span>
+            )}
           </Link>
 
           <button onClick={toggleTheme} className="theme-toggle">

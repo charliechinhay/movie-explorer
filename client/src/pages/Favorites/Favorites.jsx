@@ -16,18 +16,7 @@ function Favorites() {
           <div className="favorites-empty-icon">🎬</div>
           <h3>No movie found</h3>
           <p>Start exploring and add your favorite movies!</p>
-          <Link
-            to="/home"
-            className="btn"
-            style={{
-              background: "linear-gradient(135deg, #e50914 0%, #b20710 100%)",
-              color: "white",
-              padding: "12px 30px",
-              borderRadius: "25px",
-              textDecoration: "none",
-              fontWeight: "600",
-            }}
-          >
+          <Link to="/home" className="btn-explore">
             Esplora Film
           </Link>
         </div>

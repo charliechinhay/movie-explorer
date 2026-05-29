@@ -20,9 +20,9 @@ function MovieDetails() {
         setLoading(true);
         const data = await getMovieDetails(id);
         setMovie(data);
-        setLoading(false);
       } catch (error) {
         console.error("Error fetching movie details:", error);
+      } finally {
         setLoading(false);
       }
     };
@@ -32,7 +32,7 @@ function MovieDetails() {
 
   if (loading) {
     return (
-      <div className="text-center">
+      <div className="movie-details-loading">
         <Spinner animation="border" role="status">
           <span className="visually-hidden">Loading...</span>
         </Spinner>
@@ -41,12 +41,26 @@ function MovieDetails() {
   }
 
   if (!movie) {
-    return <p>Movie not found.</p>;
+    return <p className="movie-details-not-found">Movie not found.</p>;
   }
+
+  const backdropUrl = movie.backdrop_path
+    ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}`
+    : null;
 
   return (
     <Container className="movie-details-container">
-      <Row>
+      {backdropUrl && (
+        <div
+          className="movie-backdrop-hero"
+          style={{ backgroundImage: `url(${backdropUrl})` }}
+        >
+          <div className="movie-backdrop-overlay" />
+          <h1 className="movie-backdrop-title">{movie.title}</h1>
+        </div>
+      )}
+
+      <Row className="movie-details-card">
         <Col md={4}>
           <img
             src={
@@ -55,29 +69,39 @@ function MovieDetails() {
                 : "https://via.placeholder.com/500x750?text=No+Image"
             }
             alt={movie.title}
-            className="img-fluid"
+            className="movie-poster img-fluid"
           />
         </Col>
-        <Col md={8}>
-          <h1 className="movie-title">{movie.title}</h1>
-          <p className="movie-genres">
-            {movie.genres.map((genre) => genre.name).join(", ")}
-          </p>
+        <Col md={8} className="movie-info-col">
+          {!backdropUrl && <h1 className="movie-title">{movie.title}</h1>}
+
+          <div className="movie-genres">
+            {movie.genres?.map((genre) => (
+              <span key={genre.id} className="movie-genre-badge">
+                {genre.name}
+              </span>
+            ))}
+          </div>
+
           <p className="movie-overview">{movie.overview}</p>
+
           <p className="movie-release-date">
-            Release Date: {movie.release_date}
+            📅 Release Date: {movie.release_date}
           </p>
+
           <RenderStar rating={movie.vote_average} />
 
-          <button className="movie-details-buttons">Play Movie</button>
-          <button className="movie-details-buttons">Watch Trailer</button>
-          <button
-            className="movie-details-buttons"
-            onClick={() => toggleFavorite(movie)}
-          >
-            {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
-          </button>
-          <button className="movie-details-buttons">Share</button>
+          <div className="movie-actions">
+            <button className="movie-btn movie-btn-play">▶ Play Movie</button>
+            <button className="movie-btn movie-btn-trailer">🎬 Trailer</button>
+            <button
+              className={`movie-btn movie-btn-favorite ${isFavorite ? "is-favorite" : ""}`}
+              onClick={() => toggleFavorite(movie)}
+            >
+              {isFavorite ? "❤️ Rimuovi" : "🤍 Favorites"}
+            </button>
+            <button className="movie-btn movie-btn-share">↗ Share</button>
+          </div>
         </Col>
       </Row>
     </Container>

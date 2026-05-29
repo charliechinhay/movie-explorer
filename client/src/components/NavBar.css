@@ -66,3 +66,20 @@ body[data-theme="light"] .custom-navbar {
   background: rgba(255, 255, 255, 0.9) !important;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
 }
+
+.nav-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  background: var(--primary);
+  color: white;
+  font-size: 0.68rem;
+  font-weight: 700;
+  border-radius: 10px;
+  margin-left: 6px;
+  line-height: 1;
+  vertical-align: middle;
+}

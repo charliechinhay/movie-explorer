@@ -8,9 +8,12 @@ function CardMovie({ movie, toggleFavorite }) {
     ? "https://image.tmdb.org/t/p/w500" + movie.poster_path
     : "https://via.placeholder.com/500x750?text=No+Image";
 
-  const handleFavorite = () => {
-    toggleFavorite(movie);
-  };
+  const voteClass =
+    movie.vote_average >= 7
+      ? "vote-high"
+      : movie.vote_average >= 5
+        ? "vote-mid"
+        : "vote-low";
 
   return (
     <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }}>
@@ -19,20 +22,25 @@ function CardMovie({ movie, toggleFavorite }) {
           <Link to={`/movie/${movie.id}`}>
             <Card.Img variant="top" src={imageUrl} alt={movie.title} />
           </Link>
+          {movie.vote_average > 0 && (
+            <div className={`vote-badge ${voteClass}`}>
+              ⭐ {movie.vote_average.toFixed(1)}
+            </div>
+          )}
         </div>
         <Card.Body className="d-flex flex-column">
           <Card.Title>{movie.title}</Card.Title>
           <Card.Text>{movie.release_date?.slice(0, 4)}</Card.Text>
 
           <Button
-            onClick={handleFavorite}
+            onClick={() => toggleFavorite(movie)}
             className={`btn-favorite ${movie.isFavorite ? "is-favorite" : ""}`}
           >
-            {movie.isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+            {movie.isFavorite ? "❤️ Rimuovi" : "🤍 Aggiungi"}
           </Button>
 
           <Button as={Link} to={`/movie/${movie.id}`} className="btn-details">
-            Details
+            Dettagli →
           </Button>
         </Card.Body>
       </Card>

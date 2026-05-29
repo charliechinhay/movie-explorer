@@ -91,6 +91,36 @@ body[data-theme="dark"] .movie-card .card-title {
   position: relative;
 }
 
+.vote-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 2;
+  letter-spacing: 0.3px;
+}
+
+.vote-high {
+  background: rgba(16, 185, 129, 0.85);
+  color: #fff;
+}
+
+.vote-mid {
+  background: rgba(245, 158, 11, 0.85);
+  color: #1a1a2e;
+}
+
+.vote-low {
+  background: rgba(229, 9, 20, 0.85);
+  color: #fff;
+}
+
 .movie-card .card-img-wrapper::after {
   content: "";
   position: absolute;

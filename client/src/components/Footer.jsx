@@ -1,14 +1,20 @@
+import "./Footer.css";
+
 function Footer() {
   return (
-    <footer className="bg-dark text-light py-4 mt-5">
-      <div className="container text-center">
-        <p className="mb-0">© 2026 Movie Explorer. All rights reserved.</p>
-        <p className="mb-0">
+    <footer className="site-footer">
+      <div className="footer-inner">
+        <p className="footer-copy">
+          © 2026 <span className="footer-brand">Movie Explorer</span>. All
+          rights reserved.
+        </p>
+        <p className="footer-credit">
           Developed by{" "}
           <a
             href="https://linkedin.com/in/charlie-chinchay-824393394"
             target="_blank"
             rel="noopener noreferrer"
+            className="footer-link"
           >
             Charlie Chinchay
           </a>
