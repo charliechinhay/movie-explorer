@@ -32,7 +32,6 @@ function Home() {
           const results = await searchMovies(value);
           setMovies(results);
         } catch (err) {
-          console.log(err);
           setError("Failed to fetch movies. Please try again.");
         } finally {
           setLoading(false);
@@ -65,11 +64,8 @@ function Home() {
       setLoading(true);
       const results = await searchMovies(query);
       setMovies(results);
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
+    } catch (_err) {
       setError("Failed to fetch movies. Please try again.");
-      setLoading(false);
     } finally {
       setLoading(false);
     }
