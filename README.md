@@ -13,7 +13,8 @@ Movie Explorer è una web app sviluppata in **React** che permette di cercare fi
 The landing page introduces the application, highlighting its main features and allowing users to quickly start exploring the movie catalog.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/REPLACE-WITH-FIRST-IMAGE" alt="Movie Explorer Landing Page" width="100%">
+<img width="1905" height="910" alt="Screenshot 2026-06-11 195142" src="https://github.com/user-attachments/assets/0162861c-8328-42bb-be66-4fbe8cfb4753" />
+
 </p>
 
 ---
@@ -23,7 +24,7 @@ The landing page introduces the application, highlighting its main features and 
 Users can search movies by title and browse the latest trending films with ratings powered by TMDB.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/REPLACE-WITH-SECOND-IMAGE" alt="Movie Search Page" width="100%">
+<img width="1892" height="908" alt="Screenshot 2026-06-11 195314" src="https://github.com/user-attachments/assets/5afd88c8-2cbf-4376-9bd9-ba3cac9abb60" />
 </p>
 
 ---
@@ -33,7 +34,7 @@ Users can search movies by title and browse the latest trending films with ratin
 Each movie includes detailed information such as overview, genres, release date, rating, trailer, sharing options, and favorites management.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/REPLACE-WITH-THIRD-IMAGE" alt="Movie Details Page" width="100%">
+  <img width="1895" height="913" alt="Screenshot 2026-06-11 195232" src="https://github.com/user-attachments/assets/11ad005c-90e1-4877-8391-65a42868a94e" />
 </p>
 
 ---
